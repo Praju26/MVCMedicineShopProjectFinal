@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVCMedicineShopProjectFinal.Data.Model.Medical_Enterpriser>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MedName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time_at)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time_at)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

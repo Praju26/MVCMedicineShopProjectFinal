@@ -10,22 +10,22 @@ using MVCMedicineShopProjectFinal.Data.Model;
 
 namespace MVCMedicineShopProjectFinal.Controllers
 {
-    public class MedicinesController : Controller
+    public class Medical_EnterpriserController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public MedicinesController(ApplicationDbContext context)
+        public Medical_EnterpriserController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Medicines
+        // GET: Medical_Enterpriser
         public async Task<IActionResult> Index()
         {
-               return View(await _context.Medicine.ToListAsync());
+            return View(await _context.Medical_Enterpriser.ToListAsync());
         }
 
-        // GET: Medicines/Details/5
+        // GET: Medical_Enterpriser/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
+            var medical_Enterpriser = await _context.Medical_Enterpriser
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (medical_Enterpriser == null)
             {
                 return NotFound();
             }
 
-            return View(medicine);
+            return View(medical_Enterpriser);
         }
 
-        // GET: Medicines/Create
+        // GET: Medical_Enterpriser/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Medicines/Create
+        // POST: Medical_Enterpriser/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MedicineID,Name,Quantity,Description,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
+        public async Task<IActionResult> Create([Bind("ID,MedName,MedDescription,MedAddress,Time_at")] Medical_Enterpriser medical_Enterpriser)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(medicine);
+                _context.Add(medical_Enterpriser);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(medical_Enterpriser);
         }
 
-        // GET: Medicines/Edit/5
+        // GET: Medical_Enterpriser/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine.FindAsync(id);
-            if (medicine == null)
+            var medical_Enterpriser = await _context.Medical_Enterpriser.FindAsync(id);
+            if (medical_Enterpriser == null)
             {
                 return NotFound();
             }
-            return View(medicine);
+            return View(medical_Enterpriser);
         }
 
-        // POST: Medicines/Edit/5
+        // POST: Medical_Enterpriser/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicineID,Name,Quantity,Description,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,MedName,MedDescription,MedAddress,Time_at")] Medical_Enterpriser medical_Enterpriser)
         {
-            if (id != medicine.MedicineID)
+            if (id != medical_Enterpriser.ID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace MVCMedicineShopProjectFinal.Controllers
             {
                 try
                 {
-                    _context.Update(medicine);
+                    _context.Update(medical_Enterpriser);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicineExists(medicine.MedicineID))
+                    if (!Medical_EnterpriserExists(medical_Enterpriser.ID))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(medical_Enterpriser);
         }
 
-        // GET: Medicines/Delete/5
+        // GET: Medical_Enterpriser/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
+            var medical_Enterpriser = await _context.Medical_Enterpriser
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (medical_Enterpriser == null)
             {
                 return NotFound();
             }
 
-            return View(medicine);
+            return View(medical_Enterpriser);
         }
 
-        // POST: Medicines/Delete/5
+        // POST: Medical_Enterpriser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var medicine = await _context.Medicine.FindAsync(id);
-            _context.Medicine.Remove(medicine);
+            var medical_Enterpriser = await _context.Medical_Enterpriser.FindAsync(id);
+            _context.Medical_Enterpriser.Remove(medical_Enterpriser);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MedicineExists(int id)
+        private bool Medical_EnterpriserExists(int id)
         {
-            return _context.Medicine.Any(e => e.MedicineID == id);
+            return _context.Medical_Enterpriser.Any(e => e.ID == id);
         }
     }
 }
