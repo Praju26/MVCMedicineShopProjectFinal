@@ -22,7 +22,9 @@ namespace MVCMedicineShopProjectFinal.Controllers
         // GET: Medicines
         public async Task<IActionResult> Index()
         {
-               return View(await _context.Medicine.ToListAsync());
+            var medsize = _context.Medicine.Count();
+             ViewBag.medcount = medsize;
+            return View(await _context.Medicine.ToListAsync());
         }
 
         // GET: Medicines/Details/5
