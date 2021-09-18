@@ -14,7 +14,6 @@ namespace MVCMedicineShopProjectFinal.Data.Model
         public int Quantity { get; set; }
         public String Description { get; set; }
         public String MedicineCode { get; set; }
-        public String Img { get; set; }
         public String Use_in_case { get; set; }
         public String Contradication { get; set; }
         public String Price { get; set; }
