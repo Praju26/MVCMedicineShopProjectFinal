@@ -9,7 +9,7 @@ namespace MVCMedicineShopProjectFinal.Data.Model
     public class Medicine
     {
         [Key]
-        public int MedicineID { get; set; }
+        public int ID { get; set; }
         public String Name { get; set; }
         public int Quantity { get; set; }
         public String Description { get; set; }
@@ -18,5 +18,9 @@ namespace MVCMedicineShopProjectFinal.Data.Model
         public String Contradication { get; set; }
         public String Price { get; set; }
 
+        public static implicit operator Medicine(Customer v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

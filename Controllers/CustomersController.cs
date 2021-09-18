@@ -54,7 +54,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CustomerName,Description,CustomerAddress,CreatedOn,UpdatedOn")] Customer customer)
+        public async Task<IActionResult> Create([Bind("ID,CustomerName,Description,CustomerAddress,Time_at")] Medicine customer)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customer.FindAsync(id);
+            Medicine customer = await _context.Customer.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
@@ -86,7 +86,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CustomerName,Description,CustomerAddress,CreatedOn,UpdatedOn")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CustomerName,Description,CustomerAddress,Time_at")] Medicine customer)
         {
             if (id != customer.ID)
             {
@@ -139,7 +139,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customer.FindAsync(id);
+            Medicine customer = await _context.Customer.FindAsync(id);
             _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

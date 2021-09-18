@@ -13,9 +13,9 @@ namespace MVCMedicineShopProjectFinal.Data.Model
         public String CustomerName { get; set; }
         public String  Description { get; set; }
         public String CustomerAddress { get; set; }
-       public String Time_at { get; set; }
-        //public DateTime? CreatedOn { get; set; }
-        //public DateTime? UpdatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+
 
     }
 }

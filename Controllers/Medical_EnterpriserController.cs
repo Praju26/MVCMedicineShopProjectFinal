@@ -33,7 +33,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medical_Enterpriser = await _context.Medical_Enterpriser
+            Medical_Enterpriser medical_Enterpriser = await _context.Medical_Enterpriser
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (medical_Enterpriser == null)
             {
@@ -73,7 +73,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medical_Enterpriser = await _context.Medical_Enterpriser.FindAsync(id);
+            Medical_Enterpriser medical_Enterpriser = await _context.Medical_Enterpriser.FindAsync(id);
             if (medical_Enterpriser == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medical_Enterpriser = await _context.Medical_Enterpriser
+            Medical_Enterpriser medical_Enterpriser = await _context.Medical_Enterpriser
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (medical_Enterpriser == null)
             {
@@ -139,7 +139,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var medical_Enterpriser = await _context.Medical_Enterpriser.FindAsync(id);
+            Medical_Enterpriser medical_Enterpriser = await _context.Medical_Enterpriser.FindAsync(id);
             _context.Medical_Enterpriser.Remove(medical_Enterpriser);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

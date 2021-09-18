@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCMedicineShopProjectFinal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCMedicineShopProjectFinal.DAL", "..\MVCMedicineShopProjectFinals.DAL\MVCMedicineShopProjectFinal.DAL.csproj", "{7C7B7587-B042-491A-AD12-913E1F5A238C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalShopManagementService", "..\MedicalShopManagementService\MedicalShopManagementService.csproj", "{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCMedicineShopManagementProjectFinalAPI", "..\MVCMedicineShopManagementProjectFinalAPI\MVCMedicineShopManagementProjectFinalAPI.csproj", "{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{7C7B7587-B042-491A-AD12-913E1F5A238C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C7B7587-B042-491A-AD12-913E1F5A238C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C7B7587-B042-491A-AD12-913E1F5A238C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

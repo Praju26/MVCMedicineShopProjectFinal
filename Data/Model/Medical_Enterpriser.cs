@@ -10,10 +10,8 @@ namespace MVCMedicineShopProjectFinal.Data.Model
     {
         [Key]
         public int ID { get; set; }
-        [Required]
         public String MedName { get; set; }
-        [Required]
-        public String MedPescription { get; set; }
+        public String MedDescription { get; set; }
         public String MedAddress { get; set; }
         public String Time_at { get; set; }
     }

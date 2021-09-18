@@ -1,29 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCMedicineShopProjectFinal.Data;
 using MVCMedicineShopProjectFinal.Data.Model;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MVCMedicineShopProjectFinal.Controllers
 {
     public class MedicinesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMedicineService _medicineService;
+        private object medicineDetails;
+        private object medicine;
+        private IMedicineService medicineService;
+
+        public object MedicineDetail { get; private set; }
 
         public MedicinesController(ApplicationDbContext context)
         {
             _context = context;
+            _medicineService = medicineService;
         }
 
         // GET: Medicines
         public async Task<IActionResult> Index()
         {
-            var medsize = _context.Medicine.Count();
-             ViewBag.medcount = medsize;
+            int medsize = _context.Medicine.Count();
+            ViewBag.medcount = medsize;
             return View(await _context.Medicine.ToListAsync());
         }
 
@@ -35,15 +39,34 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
+            //    var medicine = await _context.Medicine
+            //        .FirstOrDefaultAsync(m => m.ID == id);
+            //    if (medicine == null)
+            //    {
+            //        return NotFound();
+            //    }
+
+            //    return View(medicine);
+            //}
+
+
+             _= await _medicineService.GetMedicineById(id);
+            _= await _medicineService.GetMedicineDetailsById(id);
+
+            ViewData["MedicineId"] = id;   //Used ViewData to pass data from controller to view
+
+            if (this.medicine == null || medicineDetails == null)
             {
-                return NotFound();
+                return base.NotFound();
             }
 
-            return View(medicine);
+            MedicineDetailViewModel medicineDetailViewModel = new MedicineDetailViewModel();
+            MedicineDetailViewModel.Medicine = this.medicine;
+            MedicineDetailViewModel.MedicineDetail = medicineDetails;
+
+            return View(medicineDetailViewModel);
         }
+
 
         // GET: Medicines/Create
         public IActionResult Create()
@@ -74,14 +97,20 @@ namespace MVCMedicineShopProjectFinal.Controllers
             {
                 return NotFound();
             }
-
-            var medicine = await _context.Medicine.FindAsync(id);
-            if (medicine == null)
+              _ = await _medicineService.GetMedicineById(id);
+               _ = await _medicineService.GetMedicineDetailsById(id);
+            Medicine medicine = await _context.Medicine.FindAsync(id);
+            if (MedicineDetail != null)
             {
-                return NotFound();
+                _ = await _medicineService.GetMedicineById(id);
+                _ = await _medicineService.GetMedicineDetailsById(id);
+
+                return View(model: MedicineDetail);
             }
-            return View(medicine);
+            return NotFound();
         }
+
+
 
         // POST: Medicines/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -90,7 +119,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MedicineID,Name,Quantity,Description,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
         {
-            if (id != medicine.MedicineID)
+            if (id != medicine.ID)
             {
                 return NotFound();
             }
@@ -99,12 +128,13 @@ namespace MVCMedicineShopProjectFinal.Controllers
             {
                 try
                 {
-                    _context.Update(medicine);
-                    await _context.SaveChangesAsync();
+                    //_context.Update(medicine);
+                    //await _context.SaveChangesAsync();
+                    return MedicineDetailViewModel;
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicineExists(medicine.MedicineID))
+                    if (!MedicineExists(medicine.ID))
                     {
                         return NotFound();
                     }
@@ -115,7 +145,12 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+
+            MedicineDetailViewModel medicineDetailViewModel = new MedicineDetailViewModel();
+            medicineDetailViewModel.Medicine = medicine;
+            medicineDetailViewModel.MedicineDetails = medicineDetails;
+            return View(medicineDetailViewModel);
+
         }
 
         // GET: Medicines/Delete/5
@@ -126,14 +161,14 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
-            {
-                return NotFound();
-            }
 
-            return View(medicine);
+             _= await _medicineService.GetMedicineById(id);
+
+            if (medicine != null)
+            {
+                return View(medicine);
+            }
+            return NotFound();
         }
 
         // POST: Medicines/Delete/5
@@ -141,7 +176,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var medicine = await _context.Medicine.FindAsync(id);
+            Medicine medicine = await _context.Medicine.FindAsync(id);
             _context.Medicine.Remove(medicine);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -149,7 +184,22 @@ namespace MVCMedicineShopProjectFinal.Controllers
 
         private bool MedicineExists(int id)
         {
-            return _context.Medicine.Any(e => e.MedicineID == id);
+            // return _context.Medicine.Any(e => e.ID == id);
+            return _medicineService.MedicineExist(id);
         }
+    }
+
+    internal class MedicineDetailViewModel
+    {
+        public static object Medicine { get; internal set; }
+        public static object MedicineDetail { get; internal set; }
+        public object MedicineDetails { get; internal set; }
+    }
+
+    internal interface IMedicineService
+    {
+        Task GetMedicineById(int? id);
+        Task GetMedicineDetailsById(int? id);
+        bool MedicineExist(int id);
     }
 }

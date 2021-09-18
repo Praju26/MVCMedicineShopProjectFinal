@@ -16,5 +16,7 @@ namespace MVCMedicineShopProjectFinal.Data
         public DbSet<MVCMedicineShopProjectFinal.Data.Model.Medicine> Medicine { get; set; }
         public DbSet<MVCMedicineShopProjectFinal.Data.Model.Medical_Enterpriser> Medical_Enterpriser { get; set; }
         public DbSet<MVCMedicineShopProjectFinal.Data.Model.Customer> Customer { get; set; }
+        public object MedicineDetails { get; set; }
+        public object Medicines { get; set; }
     }
 }
