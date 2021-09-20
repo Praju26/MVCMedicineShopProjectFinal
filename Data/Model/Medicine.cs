@@ -15,12 +15,9 @@ namespace MVCMedicineShopProjectFinal.Data.Model
         public String Description { get; set; }
         public String MedicineCode { get; set; }
         public String Use_in_case { get; set; }
+        public object Use_In_Case { get; internal set; }
         public String Contradication { get; set; }
-        public String Price { get; set; }
+        public Double Price { get; set; }
 
-        public static implicit operator Medicine(Customer v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

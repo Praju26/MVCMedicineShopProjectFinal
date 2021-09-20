@@ -7,9 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCMedicineShopProjectFinal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCMedicineShopProjectFinal.DAL", "..\MVCMedicineShopProjectFinals.DAL\MVCMedicineShopProjectFinal.DAL.csproj", "{7C7B7587-B042-491A-AD12-913E1F5A238C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalShopManagementService", "..\MedicalShopManagementService\MedicalShopManagementService.csproj", "{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalShopManagementService", "..\MedicalShopManagementService\MedicalShopManagementService.csproj", "{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCMedicineShopManagementProjectFinalAPI", "..\MVCMedicineShopManagementProjectFinalAPI\MVCMedicineShopManagementProjectFinalAPI.csproj", "{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCMedicineShopManagementProjectFinalAPI", "..\MVCMedicineShopManagementProjectFinalAPI\MVCMedicineShopManagementProjectFinalAPI.csproj", "{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVCMedicineShopProjectFinalServices", "MVCMedicineShopProjectFinalServices", "{91507915-95A1-48FE-B880-66F6E8313282}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVCMedicineShopManagementProjectFinalAPI2", "MVCMedicineShopManagementProjectFinalAPI2", "{B99A11AD-7F1D-46AA-9257-78846DF599FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVCMedicineShopProjectFinal2.DAL", "MVCMedicineShopProjectFinal2.DAL", "{5FBBB4E1-C0BC-41C7-8AFE-480ADFF15B5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +42,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7C7B7587-B042-491A-AD12-913E1F5A238C} = {5FBBB4E1-C0BC-41C7-8AFE-480ADFF15B5F}
+		{9810F873-9E94-4EB4-83F9-F6CA3C4DE72E} = {91507915-95A1-48FE-B880-66F6E8313282}
+		{C25921A8-10C9-4EF6-8A63-BAD2DEC17D97} = {B99A11AD-7F1D-46AA-9257-78846DF599FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B01752F1-2732-41A5-BE10-3F0A0E5D0819}
