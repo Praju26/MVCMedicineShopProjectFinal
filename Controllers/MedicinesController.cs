@@ -117,7 +117,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicineID,Name,Quantity,Description,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
+        public async Task<IActionResult> Edit(int id, [Bind("MedicineID,Name,Quantity,Description,MedicineCode,Use_in_case,Contradication,Price")] Medicine medicine)
         {
             if (id != medicine.ID)
             {

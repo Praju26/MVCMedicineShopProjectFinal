@@ -18,6 +18,7 @@ namespace MVCMedicineShopProjectFinal.Data.Model
         public object Use_In_Case { get; internal set; }
         public String Contradication { get; set; }
         public Double Price { get; set; }
+       
 
     }
 }
