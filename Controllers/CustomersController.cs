@@ -34,7 +34,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
             }
 
             var customer = await _context.Customer
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,CustomerName,Description,CustomerAddress,Time_at")] Medicine customer)
         {
-            if (id != customer.ID)
+            if (id != customer.Id)
             {
                 return NotFound();
             }
@@ -125,7 +125,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
             }
 
             var customer = await _context.Customer
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
 
         private bool CustomerExists(int id)
         {
-            return _context.Customer.Any(e => e.ID == id);
+            return _context.Customer.Any(e => e.Id == id);
         }
     }
 }

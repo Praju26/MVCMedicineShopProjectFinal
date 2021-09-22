@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using MVCMedicineShopProjectFinal.Data;
 using MVCMedicineShopProjectFinal.Data.Model;
+using MVCMedicineShopProjectFinal.ViewModel;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,8 +16,10 @@ namespace MVCMedicineShopProjectFinal.Controllers
         private object medicineDetails;
         private object medicine;
         private IMedicineService medicineService;
+        private object medicineDetailsViewModel;
 
         public object MedicineDetail { get; private set; }
+        public object Medicine { get; private set; }
 
         public MedicinesController(ApplicationDbContext context)
         {
@@ -49,9 +53,6 @@ namespace MVCMedicineShopProjectFinal.Controllers
             //    return View(medicine);
             //}
 
-
-             _= await _medicineService.GetMedicineById(id);
-            _= await _medicineService.GetMedicineDetailsById(id);
 
             ViewData["MedicineId"] = id;   //Used ViewData to pass data from controller to view
 
@@ -97,13 +98,13 @@ namespace MVCMedicineShopProjectFinal.Controllers
             {
                 return NotFound();
             }
-              _ = await _medicineService.GetMedicineById(id);
-               _ = await _medicineService.GetMedicineDetailsById(id);
-            Medicine medicine = await _context.Medicine.FindAsync(id);
+            await _medicineService.GetMedicineById(id);
+            await _medicineService.GetMedicineDetailsById(id);
+            await _context.Medicine.FindAsync(id);
             if (MedicineDetail != null)
             {
-                _ = await _medicineService.GetMedicineById(id);
-                _ = await _medicineService.GetMedicineDetailsById(id);
+                await _medicineService.GetMedicineById(id);
+                await _medicineService.GetMedicineDetailsById(id);
 
                 return View(model: MedicineDetail);
             }
@@ -129,28 +130,33 @@ namespace MVCMedicineShopProjectFinal.Controllers
                 try
                 {
                     //_context.Update(medicine);
-                    //await _context.SaveChangesAsync();
-                    return MedicineDetailViewModel;
+                    //\await _context.SaveChangesAsync();
+                    return View(medicineDetailsViewModel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!MedicineExists(medicine.ID))
                     {
-                        return NotFound();
+                        throw;
                     }
                     else
                     {
-                        throw;
+                        return NotFound();
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
 
             MedicineDetailViewModel medicineDetailViewModel = new MedicineDetailViewModel();
-            medicineDetailViewModel.Medicine = medicine;
+            MedicineDetailViewModel.Medicine = medicine;
             medicineDetailViewModel.MedicineDetails = medicineDetails;
             return View(medicineDetailViewModel);
 
+        }
+
+        private bool MedicineExists(object id)
+        {
+            throw new NotImplementedException();
         }
 
         // GET: Medicines/Delete/5
@@ -162,7 +168,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
             }
 
 
-             _= await _medicineService.GetMedicineById(id);
+            await _medicineService.GetMedicineById(id);
 
             if (medicine != null)
             {
@@ -200,6 +206,7 @@ namespace MVCMedicineShopProjectFinal.Controllers
     {
         Task GetMedicineById(int? id);
         Task GetMedicineDetailsById(int? id);
+        Task GetMedicineInfoById(int? id);
         bool MedicineExist(int id);
     }
 }
